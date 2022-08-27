@@ -7,6 +7,7 @@ import{
   MeshBasicMaterial,
   BoxGeometry
 }from "three"
+import "../styles/main.css"
 
 function HomePage() {
     useEffect(()=>{
