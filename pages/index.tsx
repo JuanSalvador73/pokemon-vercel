@@ -5,9 +5,16 @@ import{
   PerspectiveCamera,
   Mesh,
   MeshBasicMaterial,
-  BoxGeometry
+  BoxGeometry,
+  SphereGeometry,
+  TextureLoader,
+  BackSide,
+  MeshPhongMaterial, 
+  DirectionalLight,
+  HemisphereLight,
+  AmbientLight
 }from "three"
-import "../styles/main.css"
+//import "../styles/main.css"
 
 function HomePage() {
     useEffect(()=>{
@@ -32,6 +39,21 @@ function HomePage() {
           const material = new MeshBasicMaterial({color: 0xFFFFFF})
           const cubo = new Mesh(geometria, material)
           scene. add(cubo)
+
+          //Crear Skybox
+          const skygeometry = new SphereGeometry(360, 25, 25)
+          const loader = new TextureLoader()
+          const textura = loader.load("/custom-sky.png")
+          const material2 = new MeshPhongMaterial({
+            map: textura
+          })
+          const Skybox = new Mesh(skygeometry, material2)
+          scene.add(Skybox)
+          Skybox.material.side = BackSide
+
+          //Crear Iluminación
+          scene.add(new AmbientLight(0xFFFFFF, 0.8))
+          scene.add(new HemisphereLight(0xFFFFFF, 0.8))
 
 
           renderer.setSize(window.innerWidth, window.innerHeight)
