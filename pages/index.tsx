@@ -5,7 +5,16 @@ import Background from "../components/Background"
 
 function HomePage() {
  
-    return <Background />
+    return (
+      <div>
+          <div className="container">
+            <section/>
+            <section/>
+            <section/>
+          </div>
+          <Background />
+      </div>
+    )
   }
   
   export default HomePage
